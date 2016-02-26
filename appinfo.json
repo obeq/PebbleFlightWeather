@@ -1,0 +1,65 @@
+{
+    "appKeys": {
+        "bat": 8,
+        "clouds": 7,
+        "init": 4,
+        "largefont": 9,
+        "location": 5,
+        "metar": 0,
+        "net": 6,
+        "request": 1,
+        "seconds": 10,
+        "station": 2,
+        "status": 3,
+        "updated": 11
+    },
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "info@olofbeckman.se",
+    "longName": "Flight Weather pro",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/bluetooth.png",
+                "name": "ICON_BT",
+                "type": "png"
+            },
+            {
+                "file": "images/battery.png",
+                "name": "ICON_BAT",
+                "type": "png"
+            },
+            {
+                "file": "images/imc.png",
+                "name": "ICON_IMC",
+                "type": "png"
+            },
+            {
+                "file": "images/internet.png",
+                "name": "ICON_NET",
+                "type": "png"
+            },
+            {
+                "file": "images/gps.png",
+                "name": "ICON_GPS",
+                "type": "png"
+            },
+            {
+                "file": "images/connection.png",
+                "name": "ICON_CONN",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "2",
+    "shortName": "Flight Weather pro",
+    "uuid": "4bd68e2d-6e36-4309-8803-909c17ebb4c2",
+    "versionCode": 1,
+    "versionLabel": "1.3",
+    "watchapp": {
+        "watchface": true
+    }
+}
