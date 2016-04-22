@@ -818,7 +818,7 @@ static void window_load(Window *window) {
 );
 
     imc_icon = gbitmap_create_with_resource(RESOURCE_ID_ICON_IMC);
-    GRect imc_bounds = imc_icon->bounds;
+    GRect imc_bounds = gbitmap_get_bounds(imc_icon);
 
     imc_icon_layer = bitmap_layer_create((GRect) { .origin = { 15 , 0 }, .size = imc_bounds.size } );    
     bitmap_layer_set_bitmap(imc_icon_layer, imc_icon);
@@ -826,7 +826,7 @@ static void window_load(Window *window) {
     layer_add_child(status_layer, bitmap_layer_get_layer(imc_icon_layer));
   
     gps_icon = gbitmap_create_with_resource(RESOURCE_ID_ICON_GPS);
-    GRect gps_bounds = gps_icon->bounds;
+    GRect gps_bounds = gbitmap_get_bounds(gps_icon);
 
     gps_icon_layer = bitmap_layer_create((GRect) { .origin = { bounds.size.w - 36 , 0 }, .size = gps_bounds.size } );    
     bitmap_layer_set_bitmap(gps_icon_layer, gps_icon);
@@ -835,7 +835,7 @@ static void window_load(Window *window) {
     layer_add_child(status_layer, bitmap_layer_get_layer(gps_icon_layer));
 
     net_icon = gbitmap_create_with_resource(RESOURCE_ID_ICON_NET);
-    GRect net_bounds = net_icon->bounds;
+    GRect net_bounds = gbitmap_get_bounds(net_icon);
 
     net_icon_layer = bitmap_layer_create((GRect) { .origin = { bounds.size.w - 49, 0 }, .size = net_bounds.size } );    
     bitmap_layer_set_bitmap(net_icon_layer, net_icon);
@@ -844,7 +844,7 @@ static void window_load(Window *window) {
     layer_add_child(status_layer, bitmap_layer_get_layer(net_icon_layer));
 
     conn_icon = gbitmap_create_with_resource(RESOURCE_ID_ICON_CONN);
-    GRect conn_bounds = conn_icon->bounds;
+    GRect conn_bounds = gbitmap_get_bounds(conn_icon);
 
     conn_icon_layer = bitmap_layer_create((GRect) { .origin = { bounds.size.w - 23 , 0 }, .size = conn_bounds.size } );    
     bitmap_layer_set_bitmap(conn_icon_layer, conn_icon);
@@ -852,7 +852,7 @@ static void window_load(Window *window) {
     layer_add_child(status_layer, bitmap_layer_get_layer(conn_icon_layer));
 
     bt_icon = gbitmap_create_with_resource(RESOURCE_ID_ICON_BT);
-    GRect bt_bounds = bt_icon->bounds;
+    GRect bt_bounds = gbitmap_get_bounds(bt_icon);
 
     bt_icon_layer = bitmap_layer_create((GRect) { .origin = { bounds.size.w - 10, 0 }, .size = bt_bounds.size } );    
     bitmap_layer_set_bitmap(bt_icon_layer, bt_icon);
@@ -975,7 +975,9 @@ static void init() {
     layer_timers = malloc(LAYER_TIMERS * sizeof(LayerTimer));
 
     const bool animated = true;
-    window_set_fullscreen(window, true);
+//#ifdef PBL_PLATFORM_APLITE
+//    window_set_fullscreen(window, true);
+//#endif
     window_stack_push(window, animated);
 }
 

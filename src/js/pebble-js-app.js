@@ -339,7 +339,8 @@ function describe(d) {
 
 function sendSuccess(e) {
 //Called upon successful delievery of a message.
-  if ((currentMessage) && (currentMessage.mid == e.data.transactionId)) {
+  console.log("Some message claims it was sent: " + JSON.stringify(e));
+/*  if ((currentMessage) && (currentMessage.mid == e.data.transactionId)) {
     //console.log("Message with id " + e.data.transactionId + " was sent successfully.");
   } else {
     if (!currentMessage) {
@@ -347,14 +348,14 @@ function sendSuccess(e) {
     } else {
       console.log("Error! Message with id " + e.data.transactionId + " was sent, but id " + currentMessage.mid + " was excpected.");
     }
-  }
+  }*/
   currentMessage = null;
   doSend();
 }
 
 function sendFail(e) {
 //Called upon failed delievery of a message. Message is dropped.
-  console.log("Message with id " + e.data.transactionId + " failed! Error: " + e.data.error.message);
+  console.log("Message: " + JSON.stringify(e) + " failed!");
   if (currentMessage.retries) {
     currentMessage.retries--;
     messageQueue.push(currentMessage);
@@ -369,7 +370,7 @@ function doSend() {
     if (!currentMessage) {
       var message = messageQueue.shift();
          
-      message.mid = Pebble.sendAppMessage(message.text, sendSuccess, sendFail); //For some reason, Pebble seems to return a msgid that is the sent messages reported id minus 1.
+      Pebble.sendAppMessage(message.text, sendSuccess, sendFail); //For some reason, Pebble seems to return a msgid that is the sent messages reported id minus 1.
       currentMessage = message;
       //console.log("Sending message with id " + currentMessage + ".");
       //console.log("Estimated size of message: " + roughSizeOfObject(message));
