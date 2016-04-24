@@ -515,16 +515,17 @@ function locationSuccess(pos) {
   var response;
   var raw_text;
   var metar;
-  var req = fetchWeb('http://api.geonames.org/findNearByWeatherJSON?lat=' + latitude + '&lng=' + longitude + '&radius=1000&username=olofbeckman');
-
+//  var req = fetchWeb('http://api.geonames.org/findNearByWeatherJSON?lat=' + latitude + '&lng=' + longitude + '&radius=1000&username=olofbeckman');
+  var req = fetchWeb('http://olofbeckman.se/metar/location?lat=' + latitude + '&lon=' + longitude);
+  
   if (req.status == 200) {
     //I should do some validation here as well. TODO
-    response = JSON.parse(req.responseText);
+/*    response = JSON.parse(req.responseText);
     raw_text = response.weatherObservation.observation;
-    metar = parseMETAR(raw_text);
-    if (metar.station) {
+    metar = parseMETAR(raw_text);*/
+    if (req.responseText) {
       //console.log("Closest station: " + metar.station);
-      sendMessage({"station": metar.station});
+      sendMessage({"station": req.responseText});
     }
   } else {
     console.log("Geonames failed with error " + req.status);
@@ -592,7 +593,7 @@ Pebble.addEventListener("showConfiguration",
     var fontstr = configuration.largefont ? 'true' : 'false';
     var secstr = configuration.seconds ? 'true' : 'false';
     var stationstr = configuration.station;
-    Pebble.openURL("http://olofbeckman.se/config/application/metarconfig?version=4&seconds="+secstr+"&battery="+batstr+"&location="+gpsstr+"&station="+stationstr+"&largefont="+fontstr);
+    Pebble.openURL("http://olofbeckman.se/config/application/metarconfig?version=5&seconds="+secstr+"&battery="+batstr+"&location="+gpsstr+"&station="+stationstr+"&largefont="+fontstr);
   }
 );
 

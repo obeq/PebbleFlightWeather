@@ -642,7 +642,7 @@ void in_received_handler(DictionaryIterator *received, void *context) {
         if (gps_value == 1) {
             showLayer((Layer *) gps_icon_layer);
         } else {
-            hideLayerDelayed((Layer *) gps_icon_layer, MINUTES / 2);
+            hideLayerDelayed((Layer *) gps_icon_layer, 5000);
 //            if (gps_value == -1) {
 //                app_timer_register(100, requestUpdate, NULL);
 //            }
@@ -655,7 +655,7 @@ void in_received_handler(DictionaryIterator *received, void *context) {
         if (net_value == 1) {
             showLayer((Layer *) net_icon_layer);
         } else {
-            hideLayerDelayed((Layer *) net_icon_layer, MINUTES / 4);
+            hideLayerDelayed((Layer *) net_icon_layer, 5000);
         }
     }
 
